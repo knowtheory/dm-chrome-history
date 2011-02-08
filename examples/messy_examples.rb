@@ -1,8 +1,8 @@
-load File.join(File.dirname(__FILE__), "chrome.rb")
+require 'lib/dm-chrome-history'
 
 #urls = Url.all(:fields=>[:id, :url, :visit_count], :order=>[:visit_count.desc], :limit =>32000); urls.map{|u| u.visit_count}
 Url.count("visit_count.lt" => 1) # => 32 # waaaaat.
-Url.all("visit_count.lt" => 1).map{|u|u.last_visit_time} # looks like someone broke view counting in june.
+Url.all("visit_count.lt" => 1).map{ |u| u.last_visit_time} # looks like someone broke view counting in june.
 
 urls = Url.all("visit_count.gt" => 1)
 repeat_visits = urls.size

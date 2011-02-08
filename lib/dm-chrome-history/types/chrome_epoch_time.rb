@@ -12,6 +12,8 @@ end
 module DataMapper
   class Property
     class ChromeEpochTime < Integer
+      def custom?; true; end # hack for now to address problems with the property system in dm-core
+
       def load(value)
         return value unless value.respond_to?(:to_int)
         ::Time.at((value.to_i/10**6)-11644473600)
@@ -26,4 +28,3 @@ module DataMapper
     end # class EpochTime
   end # class Property
 end # module DataMapper
-
